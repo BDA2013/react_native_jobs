@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
-import { useRouter } from 'expo-router'
+import { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import { useRouter } from "expo-router";
 
-import styles from './popularjobs.style'
-import { COLORS, SIZES } from '../../../constants'
-import PopularJobCard from '../../common/cards/popular/PopularJobCard'
+import styles from "./popularjobs.style";
+import { COLORS, SIZES } from "../../../constants";
+import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import useFetch from "../../../hook/fetchHook";
 
-/* Go to 48 minutes in the video to see how to create this component
-https://youtu.be/mJ3bGvy0WAY?si=eds4idIjWequlZ6l */
 const Popularjobs = () => {
-  const router = useRouter()
-  const isLoading = false;
-  const error = false;
+  const router = useRouter();
+  
+  const { data, isLoading, error } = useFetch("search", {
+    query: "React developer",
+    num_pages: 1
+  });
 
   return (
     <View style={styles.container}>
@@ -28,11 +36,12 @@ const Popularjobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-           data={[1, 2, 3, 4]}
-           renderItem={({ item }) => (
-              <PopularJobCard 
+            data={[1, 2, 3, 4]}
+            renderItem={({ item }) => (
+              <PopularJobCard
                 item={item}
-                /* onPress={() => router.push('JobDetails')} *//>
+                /* onPress={() => router.push('JobDetails')} */
+              />
             )}
             keyExtractor={(item) => item?.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
@@ -41,7 +50,7 @@ const Popularjobs = () => {
         )}
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default Popularjobs
+export default Popularjobs;

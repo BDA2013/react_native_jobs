@@ -12,3 +12,6 @@ const PopularJobCard = () => {
 }
 
 export default PopularJobCard
+
+// Continue from here with this link: 
+// https://youtu.be/mJ3bGvy0WAY?si=rRlMw1I_BBkkrGPP&t=3993
