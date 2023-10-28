@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   View,
   Text,
@@ -15,10 +14,10 @@ import useFetch from "../../../hook/fetchHook";
 
 const Popularjobs = () => {
   const router = useRouter();
-  
+
   const { data, isLoading, error } = useFetch("search", {
     query: "React developer",
-    num_pages: 1
+    num_pages: 1,
   });
 
   return (

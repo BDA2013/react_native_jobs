@@ -15,7 +15,7 @@ const useFetch = (endpoint, query) => {
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
     params: { ...query },
-    };
+  };
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -25,11 +25,11 @@ const useFetch = (endpoint, query) => {
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      alert('There was an error fetching the data. Please try again later.')
+      alert("There was an error fetching the data. Please try again later.");
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     fetchData();
@@ -38,10 +38,9 @@ const useFetch = (endpoint, query) => {
   const refetch = () => {
     setIsLoading(true);
     fetchData();
-  }
+  };
 
   return { data, isloading, error, refetch };
-  
 };
 
 export default useFetch;
