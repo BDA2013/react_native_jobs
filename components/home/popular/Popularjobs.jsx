@@ -1,12 +1,45 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import { useState } from 'react'
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
+import { useRouter } from 'expo-router'
 
 import styles from './popularjobs.style'
+import { COLORS, SIZES } from '../../../constants'
+import PopularJobCard from '../../common/cards/popular/PopularJobCard'
 
+/* Go to 48 minutes in the video to see how to create this component
+https://youtu.be/mJ3bGvy0WAY?si=eds4idIjWequlZ6l */
 const Popularjobs = () => {
+  const router = useRouter()
+  const isLoading = false;
+  const error = false;
+
   return (
-    <View>
-      <Text>Popularjobs</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Popular Jobs</Text>
+        <TouchableOpacity style={styles.headerButton}>
+          <Text style={styles.headerBtn}>Show All</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.cardsContainer}>
+        {isLoading ? (
+          <ActivityIndicator color={COLORS.primary} />
+        ) : error ? (
+          <Text>Something went wrong</Text>
+        ) : (
+          <FlatList
+           data={[1, 2, 3, 4]}
+           renderItem={({ item }) => (
+              <PopularJobCard 
+                item={item}
+                /* onPress={() => router.push('JobDetails')} *//>
+            )}
+            keyExtractor={(item) => item?.job_id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+            horizontal
+          />
+        )}
+      </View>
     </View>
   )
 }
