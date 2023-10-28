@@ -25,7 +25,7 @@ const Popularjobs = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular Jobs</Text>
-        <TouchableOpacity style={styles.headerButton}>
+        <TouchableOpacity style={styles.headerBtn}>
           <Text style={styles.headerBtn}>Show All</Text>
         </TouchableOpacity>
       </View>
@@ -36,7 +36,7 @@ const Popularjobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-            data={[1, 2, 3, 4]}
+            data={data}
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
