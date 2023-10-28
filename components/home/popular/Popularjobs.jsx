@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   Text,
@@ -20,6 +21,13 @@ const Popularjobs = () => {
     num_pages: 1,
   });
 
+  const [selectedJob, setSelectedJob] = useState();
+
+  const handleCardPress = (item) => {
+    setSelectedJob(item);
+    router.push("JobDetails", { job: item });
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -39,7 +47,8 @@ const Popularjobs = () => {
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
-                /* onPress={() => router.push('JobDetails')} */
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
               />
             )}
             keyExtractor={(item) => item?.job_id}
